@@ -82,10 +82,6 @@ class Client(object):
         if not data:
             raise ProviderAPIError(response, 'No json result found')
 
-        #if data['status'] != "OK":
-            #raise ProviderAPIError(
-                #response, data.get('message', data.get('error_message')))
-
         return data
 
     @classmethod
