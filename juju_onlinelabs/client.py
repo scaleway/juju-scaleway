@@ -50,7 +50,7 @@ class Client(object):
     def create_server(self, name, image):
         params = dict(
             name=name,
-            image='2d50a07d-8f17-4789-b279-bd63613b52b4', #image,
+            image=image,
             organization=self.access_key)
 
         data = self.request('/servers', method='POST', params=params)
