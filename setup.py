@@ -7,7 +7,6 @@ DEPENDENCIES = [
 ]
 
 TEST_DEPENDENCIES = [
-    'nose',
     'mock'
 ]
 
