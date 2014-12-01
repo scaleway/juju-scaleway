@@ -1,9 +1,10 @@
+*.egg
+*.egg-info
 *.pyc
 bin
+build
+dist
+include
 lib
 local
 man
-include
-build
-dist
-*.egg-info
