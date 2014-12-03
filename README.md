@@ -34,6 +34,8 @@ To install Juju run the following command:
 $ brew install juju
 ```
 
+### Plugin install (Any OS)
+
 Plugin installation is done via pip/easy_install which is the python language
 package managers, its available by default on Ubuntu. Also recommended
 is virtualenv to sandbox this install from your system packages::
