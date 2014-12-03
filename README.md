@@ -54,20 +54,20 @@ $ pip install -U juju-onlinelabs
 Provide the credentials required by the plugin using environment variables:
 
 ```
-$ export ONLINELABS_ACCESS_KEY=<access_key>
-$ export ONLINELABS_SECRET_KEY=<secret_key>
+$ export ONLINELABS_ACCESS_KEY=<organization_key>
+$ export ONLINELABS_SECRET_KEY=<secret_token>
 ```
 
 ### Juju configuration
 
-To configure a Juju environment for Online Labs, add the following in your 'environments.yaml':
+To configure a Juju environment for Online Labs, add the following in your '~/.juju/environments.yaml':
 
 ```
 environments:
-  onlinelabs:
-     type: manual
-     bootstrap-host: null
-     bootstrap-user: root
+    onlinelabs:
+       type: manual
+       bootstrap-host: null
+       bootstrap-user: root
 ```
 
 ## Usage
