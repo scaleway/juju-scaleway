@@ -78,9 +78,12 @@ class Client(object):
             response = requests.post(url, headers=headers, data=json.dumps(p))
         else:
             response = requests.get(url, headers=headers, params=p)
+
         data = response.json()
         if not data:
             raise ProviderAPIError(response, 'No json result found')
+        if response.status_code >= 400:
+            raise ProviderAPIError(response, data['message'])
 
         return data
 
