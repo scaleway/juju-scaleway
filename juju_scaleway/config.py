@@ -2,9 +2,9 @@ import os
 import yaml
 import sys
 
-from juju_onlinelabs.env import Environment
-from juju_onlinelabs.exceptions import ConfigError
-from juju_onlinelabs import provider
+from juju_scaleway.env import Environment
+from juju_scaleway.exceptions import ConfigError
+from juju_scaleway import provider
 
 
 class Config(object):
@@ -13,7 +13,7 @@ class Config(object):
         self.options = options
 
     def connect_provider(self):
-        """Connect to Online Labs.
+        """Connect to Scaleway.
         """
         return provider.factory()
 

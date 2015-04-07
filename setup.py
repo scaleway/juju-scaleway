@@ -12,12 +12,12 @@ TEST_DEPENDENCIES = [
 
 
 setup(
-    name='juju-onlinelabs',
-    version='0.0.1',
-    author='Edouard Bonlieu',
-    author_email='ebonlieu@ocs.online.net',
-    description='Online Labs integration with juju',
-    url='http://onlinelabs.net',
+    name='juju-scaleway',
+    version='0.1.0',
+    author='Scaleway',
+    author_email='opensource@scaleway.com',
+    description='Scaleway integration with juju',
+    url='http://www.scaleway.com',
     license='BSD',
     packages=find_packages(),
     install_requires=DEPENDENCIES,
@@ -29,7 +29,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'juju-onlinelabs = juju_onlinelabs.cli:main'
+            'juju-scaleway = juju_scaleway.cli:main'
         ]
     }
 )

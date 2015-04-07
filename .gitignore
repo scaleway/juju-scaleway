@@ -8,3 +8,8 @@ include
 lib
 local
 man
+*.swp
+.*.swp
+*~
+*#
+.#*

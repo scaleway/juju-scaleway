@@ -1,7 +1,7 @@
 import subprocess
 import logging
 
-log = logging.getLogger('juju.onlinelabs')
+log = logging.getLogger('juju.scaleway')
 
 # juju-core will defer to either ssh or go.crypto/ssh impl
 # these options are only for the ssh ops below (availability

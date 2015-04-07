@@ -1,6 +1,6 @@
 import os
 
-from juju_onlinelabs.exceptions import ProviderAPIError
+from juju_scaleway.exceptions import ProviderAPIError
 
 import json
 import requests
@@ -30,7 +30,7 @@ class Client(object):
     def __init__(self, access_key, secret_key):
         self.access_key = access_key
         self.secret_key = secret_key
-        self.api_url_base = 'https://api.cloud.online.net'
+        self.api_url_base = 'https://api.scaleway.com'
 
     def get_images(self):
         data = self.request("/images")
@@ -89,8 +89,8 @@ class Client(object):
 
     @classmethod
     def connect(cls):
-        access_key = os.environ.get('ONLINELABS_ACCESS_KEY')
-        secret_key = os.environ.get('ONLINELABS_SECRET_KEY')
+        access_key = os.environ.get('SCALEWAY_ACCESS_KEY')
+        secret_key = os.environ.get('SCALEWAY_SECRET_KEY')
         if not access_key or not secret_key:
             raise KeyError("Missing api credentials")
         return cls(access_key, secret_key)
@@ -104,4 +104,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

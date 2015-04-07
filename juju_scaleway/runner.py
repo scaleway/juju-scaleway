@@ -1,5 +1,5 @@
 """
-Thread based concurrency around bulk ops. onlinelabs api is sync
+Thread based concurrency around bulk ops. scaleway api is sync
 """
 
 import logging
@@ -7,7 +7,7 @@ from Queue import Queue, Empty
 import threading
 
 
-log = logging.getLogger("juju.onlinelabs")
+log = logging.getLogger("juju.scaleway")
 
 
 class Runner(object):
@@ -79,4 +79,3 @@ class OpRunner(threading.Thread):
                 log.exception("Error while processing op %s", op)
                 result = e
             self.results.put(result)
-

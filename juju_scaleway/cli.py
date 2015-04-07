@@ -2,11 +2,11 @@ import argparse
 import logging
 import sys
 
-from juju_onlinelabs.config import Config
-from juju_onlinelabs.constraints import SERIES_MAP
-from juju_onlinelabs.exceptions import (
+from juju_scaleway.config import Config
+from juju_scaleway.constraints import SERIES_MAP
+from juju_scaleway.exceptions import (
     ConfigError, PrecheckError, ProviderAPIError)
-from juju_onlinelabs import commands
+from juju_scaleway import commands
 
 
 def _default_opts(parser):
@@ -25,7 +25,7 @@ def _machine_opts(parser):
         help="OS Release for machine.")
 
 
-PLUGIN_DESCRIPTION = "Juju Online Labs client-side provider"
+PLUGIN_DESCRIPTION = "Juju Scaleway client-side provider"
 
 
 def setup_parser():
@@ -65,7 +65,7 @@ def setup_parser():
     _default_opts(list_machines)
     list_machines.add_argument(
         "-a", "--all", action="store_true", default=False,
-        help="Display all servers in online labs.")
+        help="Display all servers in Scaleway.")
     list_machines.set_defaults(command=commands.ListMachines)
 
     terminate_machine = subparsers.add_parser(

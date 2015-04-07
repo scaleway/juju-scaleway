@@ -7,9 +7,9 @@ import socket
 import os
 import yaml
 
-log = logging.getLogger("juju.onlinelabs")
+log = logging.getLogger("juju.scaleway")
 
-from juju_onlinelabs.constraints import SERIES_MAP
+from juju_scaleway.constraints import SERIES_MAP
 
 
 class Environment(object):

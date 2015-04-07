@@ -3,22 +3,22 @@ import os
 import time
 import itertools
 
-from juju_onlinelabs.exceptions import ConfigError, ProviderError
-from juju_onlinelabs.client import Client
+from juju_scaleway.exceptions import ConfigError, ProviderError
+from juju_scaleway.client import Client
 
-log = logging.getLogger("juju.onlinelabs")
+log = logging.getLogger("juju.scaleway")
 
 
 def factory():
-    cfg = OnlineLabs.get_config()
-    return OnlineLabs(cfg)
+    cfg = Scaleway.get_config()
+    return Scaleway(cfg)
 
 
 def validate():
-    OnlineLabs.get_config()
+    Scaleway.get_config()
 
 
-class OnlineLabs(object):
+class Scaleway(object):
 
     def __init__(self, config, client=None):
         self.config = config
@@ -31,17 +31,17 @@ class OnlineLabs(object):
     def get_config(cls):
         provider_conf = {}
 
-        access_key = os.environ.get('ONLINELABS_ACCESS_KEY')
+        access_key = os.environ.get('SCALEWAY_ACCESS_KEY')
         if access_key:
             provider_conf['access_key'] = access_key
 
-        secret_key = os.environ.get('ONLINELABS_SECRET_KEY')
+        secret_key = os.environ.get('SCALEWAY_SECRET_KEY')
         if secret_key:
             provider_conf['secret_key'] = secret_key
 
         if (not 'access_key' in provider_conf or
                 not 'secret_key' in provider_conf):
-            raise ConfigError("Missing Online Labs api credentials")
+            raise ConfigError("Missing Scaleway api credentials")
         return provider_conf
 
     def get_servers(self):
@@ -76,4 +76,3 @@ class OnlineLabs(object):
                 log.debug("Waiting for server:%s ip:%s waited:%ds" % (
                     server.name, server.public_ip['address'] if server.public_ip else None, count*delay))
             time.sleep(delay)
-

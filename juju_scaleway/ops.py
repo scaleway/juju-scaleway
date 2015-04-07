@@ -2,10 +2,10 @@ import logging
 import time
 import subprocess
 
-from juju_onlinelabs.exceptions import TimeoutError
-from juju_onlinelabs import ssh
+from juju_scaleway.exceptions import TimeoutError
+from juju_scaleway import ssh
 
-log = logging.getLogger("juju.onlinelabs")
+log = logging.getLogger("juju.scaleway")
 
 
 class MachineOp(object):

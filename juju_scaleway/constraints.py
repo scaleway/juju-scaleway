@@ -1,4 +1,4 @@
-from juju_onlinelabs.exceptions import ConstraintError
+from juju_scaleway.exceptions import ConstraintError
 
 SERIES_MAP = {
         'Ubuntu Utopic (14.10)': 'utopic',

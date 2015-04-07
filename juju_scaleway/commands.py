@@ -3,13 +3,13 @@ import time
 import uuid
 import yaml
 
-from juju_onlinelabs import constraints
-from juju_onlinelabs.exceptions import ConfigError, PrecheckError
-from juju_onlinelabs import ops
-from juju_onlinelabs.runner import Runner
+from juju_scaleway import constraints
+from juju_scaleway.exceptions import ConfigError, PrecheckError
+from juju_scaleway import ops
+from juju_scaleway.runner import Runner
 
 
-log = logging.getLogger("juju.onlinelabs")
+log = logging.getLogger("juju.scaleway")
 
 
 class BaseCommand(object):
@@ -23,7 +23,7 @@ class BaseCommand(object):
     def solve_constraints(self):
         t = time.time()
         image_map = constraints.get_images(self.provider.client)
-        log.debug("Looked up onlinelabs images in %0.2f seconds", time.time() - t)
+        log.debug("Looked up scaleway images in %0.2f seconds", time.time() - t)
         return image_map[self.config.series]
 
     def check_preconditions(self):
@@ -60,7 +60,7 @@ class Bootstrap(BaseCommand):
     - named environment found in environments.yaml
     - environment provider type is null
     - bootstrap-host must be null
-    - ? existing onlinelabs with matching env name does not exist.
+    - ? existing scaleway with matching env name does not exist.
     """
     def run(self):
         self.check_preconditions()
