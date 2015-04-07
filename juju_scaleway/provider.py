@@ -39,8 +39,8 @@ class Scaleway(object):
         if secret_key:
             provider_conf['secret_key'] = secret_key
 
-        if (not 'access_key' in provider_conf or
-                not 'secret_key' in provider_conf):
+        if 'access_key' not in provider_conf or \
+           'secret_key' not in provider_conf:
             raise ConfigError("Missing Scaleway api credentials")
         return provider_conf
 
@@ -57,7 +57,7 @@ class Scaleway(object):
         self.client.destroy_server(server_id)
 
     def wait_on(self, server):
-      # Wait up to 5 minutes, in 30 sec increments
+        # Wait up to 5 minutes, in 30 sec increments
         print server.name
         result = self._wait_on_server(server, 30, 10)
         if not result:
@@ -74,5 +74,8 @@ class Scaleway(object):
                 return False
             if count and count % 3 == 0:
                 log.debug("Waiting for server:%s ip:%s waited:%ds" % (
-                    server.name, server.public_ip['address'] if server.public_ip else None, count*delay))
+                    server.name,
+                    server.public_ip['address'] if server.public_ip else None,
+                    count*delay
+                ))
             time.sleep(delay)

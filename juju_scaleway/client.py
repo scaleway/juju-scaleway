@@ -14,6 +14,7 @@ class Entity(object):
         i.__dict__.update(data)
         return i
 
+
 class Server(Entity):
     """
     Attributes: id, name, image, state, public_ip, creation_date
@@ -24,6 +25,7 @@ class Image(Entity):
     """
     Attributes:, id, name, arch, public
     """
+
 
 class Client(object):
 
@@ -56,14 +58,14 @@ class Client(object):
         data = self.request('/servers', method='POST', params=params)
         server = Server.from_dict(data.get('server', {}))
         # Execute poweron action
-        self.request('/servers/%s/action' % (server.id), method='POST', params={'action':'poweron'})
+        self.request('/servers/%s/action' % (server.id),
+                     method='POST', params={'action': 'poweron'})
 
         return server
 
-
-
     def destroy_server(self, server_id):
-        data = self.request('/servers/%s/action' % (server_id), method='POST', params={'action':'terminate'})
+        data = self.request('/servers/%s/action' % (server_id),
+                            method='POST', params={'action': 'terminate'})
         return data.get('task')
 
     def request(self, target, method='GET', params=None):

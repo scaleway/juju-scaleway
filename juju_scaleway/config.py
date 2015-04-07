@@ -71,7 +71,7 @@ class Config(object):
 
         with open(self.get_env_conf()) as fh:
             conf = yaml.safe_load(fh.read())
-            if not 'default' in conf:
+            if 'default' not in conf:
                 raise ConfigError("No Environment specified")
             return conf['default']
 

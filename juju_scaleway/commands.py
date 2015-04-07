@@ -23,7 +23,8 @@ class BaseCommand(object):
     def solve_constraints(self):
         t = time.time()
         image_map = constraints.get_images(self.provider.client)
-        log.debug("Looked up scaleway images in %0.2f seconds", time.time() - t)
+        log.debug("Looked up scaleway images in %0.2f seconds",
+                  time.time() - t)
         return image_map[self.config.series]
 
     def check_preconditions(self):
@@ -32,10 +33,10 @@ class BaseCommand(object):
         env_name = self.config.get_env_name()
         with open(self.config.get_env_conf()) as fh:
             conf = yaml.safe_load(fh.read())
-            if not 'environments' in conf:
+            if 'environments' not in conf:
                 raise ConfigError(
                     "Invalid environments.yaml, no 'environments' section")
-            if not env_name in conf['environments']:
+            if env_name not in conf['environments']:
                 raise ConfigError(
                     "Environment %r not in environments.yaml" % env_name)
             env = conf['environments'][env_name]
@@ -86,7 +87,7 @@ class Bootstrap(BaseCommand):
         if self.env.is_running():
             raise PrecheckError(
                 "Environment %s is already bootstrapped" % (
-                self.config.get_env_name()))
+                    self.config.get_env_name()))
         return result
 
 
@@ -133,12 +134,15 @@ class AddMachine(BaseCommand):
                 self.config.get_env_name(), uuid.uuid4().hex)
             self.runner.queue_op(
                 ops.MachineRegister(
-                    self.provider, self.env, params, series=self.config.series))
-
+                    self.provider, self.env, params, series=self.config.series
+                )
+            )
 
         for (server, machine_id) in self.runner.iter_results():
             log.info("Registered id:%s name:%s ip:%s as juju machine",
-                     server.id, server.name, server.public_ip['address'] if server.public_ip else None)
+                     server.id, server.name,
+                     server.public_ip['address'] if server.public_ip else None
+            )
 
 
 class TerminateMachine(BaseCommand):
@@ -164,8 +168,10 @@ class TerminateMachine(BaseCommand):
                      'server_id': machines[m]['instance-id'],
                      'machine_id': m})
 
-        address_map = dict([(d.public_ip['address'] if d.public_ip else None, d) for
-                            d in self.provider.get_servers()])
+        address_map = dict([
+            (d.public_ip['address'] if d.public_ip else None, d)
+            for d in self.provider.get_servers()
+        ])
         if not remove:
             return status, address_map
 
