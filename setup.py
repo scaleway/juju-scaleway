@@ -3,7 +3,8 @@ from setuptools import setup, find_packages
 
 DEPENDENCIES = [
     'PyYAML',
-    'requests'
+    'requests',
+    'ndg-httpsclient >=0.3.3',
 ]
 
 TEST_DEPENDENCIES = [
