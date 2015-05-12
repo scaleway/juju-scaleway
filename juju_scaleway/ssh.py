@@ -17,7 +17,9 @@ def check_ssh(host, user="root"):
     retcode = process.poll()
 
     if retcode:
-        raise subprocess.CalledProcessError(retcode, cmd, output + (err or ''))
+        raise subprocess.CalledProcessError(
+            retcode, cmd, '%s%s' % (output, err or '')
+        )
     return True
 
 

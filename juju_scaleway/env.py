@@ -1,4 +1,8 @@
-import httplib
+try:
+    import httplib
+except ImportError:  # Python3
+    import http.client as httplib
+
 import logging
 import shutil
 import subprocess

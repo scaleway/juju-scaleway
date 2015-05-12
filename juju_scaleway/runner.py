@@ -3,7 +3,12 @@ Thread based concurrency around bulk ops. scaleway api is sync
 """
 
 import logging
-from Queue import Queue, Empty
+
+try:
+    from Queue import Queue, Empty
+except ImportError:  # Python3
+    from queue import Queue, Empty
+
 import threading
 
 
