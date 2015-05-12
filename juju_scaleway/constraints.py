@@ -1,6 +1,3 @@
-from juju_scaleway.exceptions import ConstraintError
-
-
 SERIES_MAP = {
     'Ubuntu Utopic (14.10)': 'utopic',
     'Ubuntu Trusty (14.04 LTS)': 'trusty',
@@ -13,7 +10,8 @@ def get_images(client):
         if not i.public:
             continue
 
-        for s in SERIES_MAP:
-            if ("%s" % s) == i.name:
-                images[SERIES_MAP[s]] = i.id
+        for serie in SERIES_MAP:
+            if ("%s" % serie) == i.name:
+                images[SERIES_MAP[serie]] = i.id
+
     return images

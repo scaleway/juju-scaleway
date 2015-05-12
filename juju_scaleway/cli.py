@@ -11,18 +11,21 @@ from juju_scaleway import commands
 
 def _default_opts(parser):
     parser.add_argument(
-        "-e", "--environment", help="Juju environment to operate on")
+        "-e", "--environment", help="Juju environment to operate on"
+    )
     parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Verbose output")
+        "-v", "--verbose", action="store_true", help="Verbose output"
+    )
 
 
 def _machine_opts(parser):
     parser.add_argument(
-        "--constraints", default="",
-        help="Machine allocation criteria")
+        "--constraints", default="", help="Machine allocation criteria"
+    )
     parser.add_argument(
         "--series", default="trusty", choices=SERIES_MAP.values(),
-        help="OS Release for machine.")
+        help="OS Release for machine."
+    )
 
 
 PLUGIN_DESCRIPTION = "Juju Scaleway client-side provider"
@@ -104,8 +107,8 @@ def main():
 
     try:
         config.validate()
-    except ConfigError as e:
-        print("Configuration error: %s" % str(e))
+    except ConfigError as exc:
+        print("Configuration error: %s" % str(exc))
         sys.exit(1)
 
     cmd = options.command(
@@ -114,13 +117,13 @@ def main():
         config.connect_environment())
     try:
         cmd.run()
-    except ProviderAPIError as e:
-        print("Provider interaction error: %s" % str(e))
-    except ConfigError as e:
-        print("Configuration error: %s" % str(e))
+    except ProviderAPIError as exc:
+        print("Provider interaction error: %s" % str(exc))
+    except ConfigError as exc:
+        print("Configuration error: %s" % str(exc))
         sys.exit(1)
-    except PrecheckError as e:
-        print("Precheck error: %s" % str(e))
+    except PrecheckError as exc:
+        print("Precheck error: %s" % str(exc))
         sys.exit(1)
 
 if __name__ == '__main__':

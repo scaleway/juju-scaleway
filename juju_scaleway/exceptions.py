@@ -24,8 +24,7 @@ class ProviderError(Exception):
 
 
 class ProviderAPIError(Exception):
-    """
-    """
+
     def __init__(self, response, message):
         self.response = response
         self.message = message
