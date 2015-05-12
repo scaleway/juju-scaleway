@@ -1,7 +1,4 @@
 import subprocess
-import logging
-
-log = logging.getLogger('juju.scaleway')
 
 # juju-core will defer to either ssh or go.crypto/ssh impl
 # these options are only for the ssh ops below (availability
@@ -20,16 +17,14 @@ def check_ssh(host, user="root"):
     retcode = process.poll()
 
     if retcode:
-        raise subprocess.CalledProcessError(retcode, cmd, output + (err or ''))
+        raise subprocess.CalledProcessError(
+            retcode, cmd, '%s%s' % (output, err or '')
+        )
     return True
 
 
 def update_instance(host, user="root"):
     base = list(SSH_CMD) + ["%s@%s" % (user, host)]
     subprocess.check_output(
-        base + ["apt-get", "update"], stderr=subprocess.STDOUT)
-# Don't really need to update the image, just the package lists.
-#    subprocess.check_output(base + [
-#        'DEBIAN_FRONTEND=noninteractive',
-#        'APT_LISTCHANGES_FRONTEND=none',
-#        "apt-get", "upgrade"])
+        base + ["apt-get", "update"], stderr=subprocess.STDOUT
+    )

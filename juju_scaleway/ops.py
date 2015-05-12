@@ -5,7 +5,8 @@ import subprocess
 from juju_scaleway.exceptions import TimeoutError
 from juju_scaleway import ssh
 
-log = logging.getLogger("juju.scaleway")
+
+logger = logging.getLogger("juju.scaleway")
 
 
 class MachineOp(object):
@@ -45,21 +46,21 @@ class MachineAdd(MachineOp):
                 if ssh.check_ssh(server.public_ip['address']):
                     running = True
                     break
-            except subprocess.CalledProcessError, e:
-                if ("Connection refused" in e.output or
-                        "Connection timed out" in e.output or
-                        "Connection closed" in e.output or
-                        "Connection reset by peer" in e.output):
-                    log.debug(
+            except subprocess.CalledProcessError as exc:
+                if ("Connection refused" in exc.output or
+                        "Connection timed out" in exc.output or
+                        "Connection closed" in exc.output or
+                        "Connection reset by peer" in exc.output):
+                    logger.debug(
                         "Waiting for ssh on id:%s ip:%s name:%s remaining:%d",
                         server.id, server.public_ip['address'], server.name,
                         int(max_time-time.time()))
                     time.sleep(self.delay)
                 else:
-                    log.error(
+                    logger.error(
                         "Could not ssh to server name: %s id: %s ip: %s\n%s",
                         server.name, server.id, server.public_ip['address'],
-                        e.output)
+                        exc.output)
                     raise
 
         if running is False:
@@ -89,5 +90,5 @@ class MachineDestroy(MachineOp):
             self.env.terminate_machines([self.params['machine_id']])
         if self.options.get('env_only'):
             return
-        log.debug("Destroying server %s", self.params['server_id'])
+        logger.debug("Destroying server %s", self.params['server_id'])
         self.provider.terminate_server(self.params['server_id'])

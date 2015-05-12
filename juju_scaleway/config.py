@@ -66,11 +66,11 @@ class Config(object):
 
         env_ptr = os.path.join(self.juju_home, "current-environment")
         if os.path.exists(env_ptr):
-            with open(env_ptr) as fh:
-                return fh.read().strip()
+            with open(env_ptr) as handle:
+                return handle.read().strip()
 
-        with open(self.get_env_conf()) as fh:
-            conf = yaml.safe_load(fh.read())
+        with open(self.get_env_conf()) as handle:
+            conf = yaml.safe_load(handle.read())
             if 'default' not in conf:
                 raise ConfigError("No Environment specified")
             return conf['default']

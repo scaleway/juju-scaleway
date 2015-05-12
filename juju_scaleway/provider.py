@@ -6,7 +6,7 @@ import itertools
 from juju_scaleway.exceptions import ConfigError, ProviderError
 from juju_scaleway.client import Client
 
-log = logging.getLogger("juju.scaleway")
+logger = logging.getLogger("juju.scaleway")
 
 
 def factory():
@@ -58,7 +58,7 @@ class Scaleway(object):
 
     def wait_on(self, server):
         # Wait up to 5 minutes, in 30 sec increments
-        print server.name
+        print(server.name)
         result = self._wait_on_server(server, 30, 10)
         if not result:
             raise ProviderError("Could not provision server before timeout")
@@ -73,9 +73,10 @@ class Scaleway(object):
             if count >= limit:
                 return False
             if count and count % 3 == 0:
-                log.debug("Waiting for server:%s ip:%s waited:%ds" % (
+                logger.debug(
+                    "Waiting for server:%s ip:%s waited:%ds",
                     server.name,
                     server.public_ip['address'] if server.public_ip else None,
-                    count*delay
-                ))
+                    count * delay
+                )
             time.sleep(delay)

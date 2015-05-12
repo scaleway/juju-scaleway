@@ -36,14 +36,14 @@ class Client(object):
 
     def get_images(self):
         data = self.request("/images")
-        return map(Image.from_dict, data.get("images", []))
+        return [Image.from_dict(image) for image in data.get("images", [])]
 
     def get_url(self, target):
         return "%s%s" % (self.api_url_base, target)
 
     def get_servers(self):
         data = self.request("/servers")
-        return map(Server.from_dict, data.get('servers', []))
+        return [Server.from_dict(server) for server in data.get('servers', [])]
 
     def get_server(self, server_id):
         data = self.request("/servers/%s" % (server_id))
@@ -69,7 +69,7 @@ class Client(object):
         return data.get('task')
 
     def request(self, target, method='GET', params=None):
-        p = params and dict(params) or {}
+        params = params and dict(params) or {}
 
         headers = {'User-Agent': 'juju/client'}
         headers = {'X-Auth-Token': self.secret_key}
@@ -77,9 +77,11 @@ class Client(object):
 
         if method == 'POST':
             headers['Content-Type'] = "application/json"
-            response = requests.post(url, headers=headers, data=json.dumps(p))
+            response = requests.post(
+                url, headers=headers, data=json.dumps(params)
+            )
         else:
-            response = requests.get(url, headers=headers, params=p)
+            response = requests.get(url, headers=headers, params=params)
 
         data = response.json()
         if not data:

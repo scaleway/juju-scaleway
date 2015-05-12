@@ -3,11 +3,16 @@ Thread based concurrency around bulk ops. scaleway api is sync
 """
 
 import logging
-from Queue import Queue, Empty
+
+try:
+    from Queue import Queue, Empty
+except ImportError:  # Python3
+    from queue import Queue, Empty
+
 import threading
 
 
-log = logging.getLogger("juju.scaleway")
+logger = logging.getLogger("juju.scaleway")
 
 
 class Runner(object):
@@ -21,8 +26,8 @@ class Runner(object):
         self.runners = []
         self.started = False
 
-    def queue_op(self, op):
-        self.jobs.put(op)
+    def queue_op(self, operation):
+        self.jobs.put(operation)
         self.job_count += 1
 
     def iter_results(self):
@@ -31,7 +36,7 @@ class Runner(object):
         if auto:
             self.start(min(self.DEFAULT_NUM_RUNNER, self.job_count))
 
-        for i in range(self.job_count):
+        for _ in range(self.job_count):
             self.job_count -= 1
             result = self.gather_result()
             if isinstance(result, Exception):
@@ -45,7 +50,7 @@ class Runner(object):
         return self.results.get()
 
     def start(self, count):
-        for i in range(count):
+        for _ in range(count):
             runner = OpRunner(self.jobs, self.results)
             runner.daemon = True
             self.runners.append(runner)
@@ -68,14 +73,14 @@ class OpRunner(threading.Thread):
     def run(self):
         while 1:
             try:
-                op = self.ops.get(block=False)
+                operation = self.ops.get(block=False)
             except Empty:
-                op = None
-            if op is None:
                 return
+
             try:
-                result = op.run()
-            except Exception, e:
-                log.exception("Error while processing op %s", op)
-                result = e
+                result = operation.run()
+            except Exception as exc:
+                logger.exception("Error while processing op %s", operation)
+                result = exc
+
             self.results.put(result)

@@ -1,4 +1,8 @@
-import httplib
+try:
+    import httplib
+except ImportError:  # Python3
+    import http.client as httplib
+
 import logging
 import shutil
 import subprocess
@@ -7,9 +11,10 @@ import socket
 import os
 import yaml
 
-log = logging.getLogger("juju.scaleway")
-
 from juju_scaleway.constraints import SERIES_MAP
+
+
+logger = logging.getLogger("juju.scaleway")
 
 
 class Environment(object):
@@ -23,17 +28,18 @@ class Environment(object):
         env["JUJU_ENV"] = self.config.get_env_name()
         args = ['juju']
         args.extend(command)
-        log.debug("Running juju command: %s", " ".join(args))
+        logger.debug("Running juju command: %s", " ".join(args))
         try:
             if capture_err:
                 return subprocess.check_call(
                     args, env=env, stderr=subprocess.STDOUT)
             return subprocess.check_output(
                 args, env=env, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError, e:
-            log.error(
+        except subprocess.CalledProcessError as exc:
+            logger.error(
                 "Failed to run command %s\n%s",
-                ' '.join(args), e.output)
+                ' '.join(args), exc.output
+            )
             raise
 
     def status(self):
@@ -47,8 +53,8 @@ class Environment(object):
             self.config.juju_home, "environments", "%s.jenv" % name)
         if not os.path.exists(jenv):
             return False
-        with open(jenv) as fh:
-            data = yaml.safe_load(fh.read())
+        with open(jenv) as handle:
+            data = yaml.safe_load(handle.read())
             if not data:
                 return False
             conf = data.get('bootstrap-config')
@@ -129,13 +135,15 @@ class Environment(object):
             os.path.join(boot_home, 'ssh'))
 
         # Updated env config with the bootstrap host.
-        with open(self.config.get_env_conf()) as fh:
-            data = yaml.safe_load(fh.read())
+        with open(self.config.get_env_conf()) as handle:
+            data = yaml.safe_load(handle.read())
             env_conf = data['environments'].get(env_name)
         env_conf['bootstrap-host'] = host
-        with open(os.path.join(
-                boot_home, 'environments.yaml'), 'w') as fh:
-            fh.write(yaml.safe_dump({'environments': {env_name: env_conf}}))
+
+        with open(os.path.join(boot_home, 'environments.yaml'), 'w') as handle:
+            handle.write(yaml.safe_dump({
+                'environments': {env_name: env_conf}
+            }))
 
         # Change JUJU_ENV
         env = dict(os.environ)
