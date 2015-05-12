@@ -58,7 +58,7 @@ class Scaleway(object):
 
     def wait_on(self, server):
         # Wait up to 5 minutes, in 30 sec increments
-        print server.name
+        print(server.name)
         result = self._wait_on_server(server, 30, 10)
         if not result:
             raise ProviderError("Could not provision server before timeout")

@@ -75,7 +75,7 @@ class OpRunner(threading.Thread):
                 return
             try:
                 result = op.run()
-            except Exception, e:
+            except Exception as e:
                 log.exception("Error while processing op %s", op)
                 result = e
             self.results.put(result)

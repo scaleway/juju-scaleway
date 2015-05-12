@@ -104,7 +104,7 @@ def main():
 
     try:
         config.validate()
-    except ConfigError, e:
+    except ConfigError as e:
         print("Configuration error: %s" % str(e))
         sys.exit(1)
 
@@ -114,12 +114,12 @@ def main():
         config.connect_environment())
     try:
         cmd.run()
-    except ProviderAPIError, e:
+    except ProviderAPIError as e:
         print("Provider interaction error: %s" % str(e))
-    except ConfigError, e:
+    except ConfigError as e:
         print("Configuration error: %s" % str(e))
         sys.exit(1)
-    except PrecheckError, e:
+    except PrecheckError as e:
         print("Precheck error: %s" % str(e))
         sys.exit(1)
 

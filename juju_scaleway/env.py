@@ -7,9 +7,10 @@ import socket
 import os
 import yaml
 
-log = logging.getLogger("juju.scaleway")
-
 from juju_scaleway.constraints import SERIES_MAP
+
+
+log = logging.getLogger("juju.scaleway")
 
 
 class Environment(object):
@@ -30,7 +31,7 @@ class Environment(object):
                     args, env=env, stderr=subprocess.STDOUT)
             return subprocess.check_output(
                 args, env=env, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError, e:
+        except subprocess.CalledProcessError as e:
             log.error(
                 "Failed to run command %s\n%s",
                 ' '.join(args), e.output)

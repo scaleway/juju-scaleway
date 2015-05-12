@@ -45,7 +45,7 @@ class MachineAdd(MachineOp):
                 if ssh.check_ssh(server.public_ip['address']):
                     running = True
                     break
-            except subprocess.CalledProcessError, e:
+            except subprocess.CalledProcessError as e:
                 if ("Connection refused" in e.output or
                         "Connection timed out" in e.output or
                         "Connection closed" in e.output or

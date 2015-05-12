@@ -139,9 +139,10 @@ class AddMachine(BaseCommand):
             )
 
         for (server, machine_id) in self.runner.iter_results():
-            log.info("Registered id:%s name:%s ip:%s as juju machine",
-                     server.id, server.name,
-                     server.public_ip['address'] if server.public_ip else None
+            log.info(
+                "Registered id:%s name:%s ip:%s as juju machine",
+                server.id, server.name,
+                server.public_ip['address'] if server.public_ip else None
             )
 
 
