@@ -185,3 +185,10 @@ print verbose output while running.
 
 You can find out more about using from `Juju docs
 <http://juju.ubuntu.com/docs>`_.
+
+
+License
+=======
+
+This software is licensed under a `BSD 2-Clause License
+<https://github.com/scaleway/juju-scaleway/blob/develop/LICENSE.rst`_.
