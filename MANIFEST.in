@@ -1,3 +1,4 @@
 include CHANGES.md
+include LICENSE.rst
 include MANIFEST.in
 include README.md
