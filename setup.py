@@ -46,7 +46,7 @@ setup(
     author='Scaleway',
     author_email='opensource@scaleway.com',
     description='Scaleway integration with juju',
-    url='http://www.scaleway.com',
+    url='https://pypi.python.org/pypi/juju-scaleway',
     license='BSD',
     packages=find_packages(),
     install_requires=DEPENDENCIES,
