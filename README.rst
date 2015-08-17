@@ -191,4 +191,4 @@ License
 =======
 
 This software is licensed under a `BSD 2-Clause License
-<https://github.com/scaleway/juju-scaleway/blob/develop/LICENSE.rst`_.
+<https://github.com/scaleway/juju-scaleway/blob/develop/LICENSE.rst>`_.
