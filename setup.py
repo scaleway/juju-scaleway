@@ -42,14 +42,16 @@ def get_version():
             if res:
                 return res.group(1)
 
+
 def get_long_description():
     """ Read description from README and CHANGES. """
     with open(
-        os.path.join(os.path.dirname(__file__), 'README.md')
+        os.path.join(os.path.dirname(__file__), 'README.rst')
     ) as readme, open(
-        os.path.join(os.path.dirname(__file__), 'CHANGES.md')
+        os.path.join(os.path.dirname(__file__), 'CHANGES.rst')
     ) as changes:
         return readme.read() + '\n' + changes.read()
+
 
 setup(
     name='juju-scaleway',
