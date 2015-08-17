@@ -14,7 +14,7 @@ Juju Scaleway provider
     :target: https://requires.io/github/scaleway/juju-scaleway/requirements/?branch=master
     :alt: Requirements freshness
 .. image:: https://img.shields.io/scrutinizer/g/scaleway/juju-scaleway.svg?style=flat
-    :target: https://scrutinizer-ci.com/g/scaleway/postal-address/?branch=develop
+    :target: https://scrutinizer-ci.com/g/scaleway/juju-scaleway/?branch=develop
     :alt: Code Quality
 .. image:: https://img.shields.io/pypi/l/juju-scaleway.svg?style=flat
     :target: http://opensource.org/licenses/BSD-2-Clause
