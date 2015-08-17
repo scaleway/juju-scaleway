@@ -4,7 +4,7 @@ ChangeLog
 1.0.2 (unreleased)
 ------------------
 
-* No entry.
+* Add badges.
 
 1.0.1 (2015-05-12)
 ------------------

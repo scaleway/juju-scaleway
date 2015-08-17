@@ -1,17 +1,35 @@
 Juju Scaleway provider
 ======================
 
-This package provides a cli plugin for Juju that allows for automated
-provisioning of physical servers on Scaleway.
+.. image:: https://img.shields.io/pypi/v/juju-scaleway.svg?style=flat
+    :target: https://pypi.python.org/pypi/juju-scaleway
+    :alt: Last release
+.. image:: https://img.shields.io/travis/scaleway/juju-scaleway/develop.svg?style=flat
+    :target: https://travis-ci.org/scaleway/juju-scaleway
+    :alt: Unit-tests status
+.. image:: https://coveralls.io/repos/scaleway/juju-scaleway/badge.svg?branch=develop&service=github
+    :target: https://coveralls.io/r/scaleway/juju-scaleway?branch=develop
+    :alt: Coverage Status
+.. image:: https://img.shields.io/requires/github/scaleway/juju-scaleway/master.svg?style=flat
+    :target: https://requires.io/github/scaleway/juju-scaleway/requirements/?branch=master
+    :alt: Requirements freshness
+.. image:: https://img.shields.io/scrutinizer/g/scaleway/juju-scaleway.svg?style=flat
+    :target: https://scrutinizer-ci.com/g/scaleway/postal-address/?branch=develop
+    :alt: Code Quality
+.. image:: https://img.shields.io/pypi/l/juju-scaleway.svg?style=flat
+    :target: http://opensource.org/licenses/BSD-2-Clause
+    :alt: Software license
+.. image:: https://img.shields.io/pypi/dm/juju-scaleway.svg?style=flat
+    :target: https://pypi.python.org/pypi/juju-scaleway#downloads
+    :alt: Popularity
 
-`Scaleway <https://scaleway.com>`_ is the first hosting provider worldwide to
-offer dedicated arm servers in the cloud.
+This package provides a CLI plugin for `Juju <http://juju.ubuntu.com>`_ to
+provision physical servers on `Scaleway <https://scaleway.com>`_, the first
+platform to offer dedicated ARM servers in the cloud.
 
 Juju provides for workloads management and orchestration using a collection of
 workloads definitions (charms) that can be assembled lego fashion at runtime
 into complex application topologies.
-
-You can find out more on `Juju's home page <http://juju.ubuntu.com>`_.
 
 This plugin is highly inspired by `@kapilt <https://github.com/kapilt>`_ Juju
 plugins.
