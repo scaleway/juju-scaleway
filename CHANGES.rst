@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-1.0.2 (unreleased)
+1.0.2 (2015-08-17)
 ------------------
 
 * Add missing license. Closes #2.
