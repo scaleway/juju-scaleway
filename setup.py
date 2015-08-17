@@ -52,9 +52,17 @@ setup(
     install_requires=DEPENDENCIES,
     tests_require=DEPENDENCIES + TEST_DEPENDENCIES,
     classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Web Environment',
         'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Operating System :: OS Independent'
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Internet',
+        'Topic :: System :: Distributed Computing',
     ],
     entry_points={
         'console_scripts': [
