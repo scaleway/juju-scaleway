@@ -105,9 +105,9 @@ To configure a Juju environment for Scaleway, add the following in your
 
     environments:
         scaleway:
-        type: manual
-        bootstrap-host: null
-        bootstrap-user: root
+            type: manual
+            bootstrap-host: null
+            bootstrap-user: root
 
 
 Usage
