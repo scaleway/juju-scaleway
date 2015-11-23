@@ -1,7 +1,7 @@
 ChangeLog
 =========
 
-1.0.3 (unreleased)
+1.0.3 (2015-11-23)
 ------------------
 
 * Add travis config.
