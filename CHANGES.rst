@@ -4,7 +4,9 @@ ChangeLog
 1.0.3 (unreleased)
 ------------------
 
-* No changes yet.
+* Add travis config.
+* Add bumpversion config.
+* Switch from coveralls.io to codecov.io.
 
 1.0.2 (2015-08-17)
 ------------------

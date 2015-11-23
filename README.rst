@@ -20,8 +20,8 @@ Development: |build| |quality| |coverage|
 .. |build| image:: https://img.shields.io/travis/scaleway/juju-scaleway/develop.svg?style=flat
     :target: https://travis-ci.org/scaleway/juju-scaleway
     :alt: Unit-tests status
-.. |coverage| image::  https://coveralls.io/repos/scaleway/juju-scaleway/badge.svg?branch=develop&service=github
-    :target: https://coveralls.io/r/scaleway/juju-scaleway?branch=develop
+.. |coverage| image:: https://codecov.io/github/scaleway/juju-scaleway/coverage.svg?branch=develop
+    :target: https://codecov.io/github/scaleway/juju-scaleway?branch=develop
     :alt: Coverage Status
 .. |quality| image:: https://img.shields.io/scrutinizer/g/scaleway/juju-scaleway.svg?style=flat
     :target: https://scrutinizer-ci.com/g/scaleway/juju-scaleway/?branch=develop
